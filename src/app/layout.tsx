@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
+  weight: ["400", "700"], // Specify the desired font weights
 });
 
 export const metadata: Metadata = {
@@ -25,8 +27,41 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.variable} ${ibmPlexSans.variable} antialiased`}
       >
+        <nav className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-6 mb-10 shadow-xl rounded-b-lg">
+          <div className="max-w-6xl mx-auto flex justify-between items-center px-8">
+            <div className="text-white font-extrabold text-2xl tracking-wide">
+              All About Google Gemini
+            </div>
+            <div className="flex gap-6">
+              <Link
+          href="/"
+          className="text-white font-medium hover:text-yellow-300 transition duration-300 ease-in-out transform hover:scale-105"
+              >
+          PDF Summarizer & Q&A
+              </Link>
+              <Link
+          href="/image-caption"
+          className="text-white font-medium hover:text-yellow-300 transition duration-300 ease-in-out transform hover:scale-105"
+              >
+          Image Caption
+              </Link>
+              <Link
+          href="/image-to-text"
+          className="text-white font-medium hover:text-yellow-300 transition duration-300 ease-in-out transform hover:scale-105"
+              >
+          Image to Text
+              </Link>
+              <Link
+          href="/sentiment-analysis"
+          className="text-white font-medium hover:text-yellow-300 transition duration-300 ease-in-out transform hover:scale-105"
+              >
+          Sentiment Analysis
+              </Link>
+            </div>
+          </div>
+        </nav>
         {children}
       </body>
     </html>
